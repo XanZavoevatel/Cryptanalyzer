@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class StartProgram {
     private static final String HELLO = "Приветствую в программе криптоанализа текстовых файлов!";
-    private static final String CHOICE = "Выберите процедуру: ";
+    private static final String CHOICE = "Выберите процедуру !!!!(это проверка работы шифрования, пожалуйста нажмите либо 1, либо 5)!!!!: ";
 
 
     public  static void start() {
