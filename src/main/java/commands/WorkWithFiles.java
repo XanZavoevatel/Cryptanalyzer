@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -18,12 +20,12 @@ public class WorkWithFiles {
     private String IS_NOT_DIRECTORY = "Указана неверная дирректория или ты думаешь я сам должен ее создать?!\n" +
             "А может ты указал путь к файлу. В любом случае попробуй снова;-)";
     private List<String> stringsFile;
+    private List<String> stringsResultFile;
+
 
     public void setStringsResultFile(List<String> stringsResultFile) {
         this.stringsResultFile = stringsResultFile;
     }
-
-    private List<String> stringsResultFile;
 
 
     public List<String> getStringsFile() {
@@ -61,21 +63,22 @@ public class WorkWithFiles {
         for (String s : writeStr) {
 
             try {
-                Files.write(finaleDirectory, s.getBytes());
+
+                Files.write(finaleDirectory, s.getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println(writeStr);
-
     }
-
+/*
+Метод отвечает за получения пути к начальному файлу и конечному
+ */
     private void gettingPaths() {
         System.out.println(GETTING_SOURCE);
         Scanner input = new Scanner(System.in);
 
         while (true) {
-            source = Path.of(input.nextLine());
+            source = Paths.get(input.nextLine());
             if (Files.isRegularFile(source)) {
                 break;
             } else {
@@ -85,7 +88,7 @@ public class WorkWithFiles {
         }
 
         System.out.println(GETTING_FINALE);
-        finaleDirectory = Path.of(input.nextLine());
+        finaleDirectory = Paths.get(input.nextLine());
         if (Files.notExists(finaleDirectory)) {
             try {
                 Files.createFile(finaleDirectory);
