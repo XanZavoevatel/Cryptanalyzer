@@ -1,4 +1,4 @@
-package commands;
+package ru.javarush.khozhasaitov.cryptoanalyzer.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class WorkWithFiles {
         for (String s : writeStr) {
 
             try {
-
+                s = s + "\n";
                 Files.write(finaleDirectory, s.getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 e.printStackTrace();

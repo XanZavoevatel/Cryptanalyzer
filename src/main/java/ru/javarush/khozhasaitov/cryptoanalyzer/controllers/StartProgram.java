@@ -1,5 +1,6 @@
-import commands.Encoder;
-import commands.WorkWithFiles;
+package ru.javarush.khozhasaitov.cryptoanalyzer.controllers;
+
+import ru.javarush.khozhasaitov.cryptoanalyzer.commands.EncoderDecoder;
 
 import java.util.Scanner;
 
@@ -24,7 +25,8 @@ public class StartProgram {
             }
         }
         switch (choise) {
-            case 1 -> new Encoder();
+            case 1 -> new EncoderDecoder(true);
+            case 2 -> new EncoderDecoder(false);
             case 5 -> System.exit(0);
         }
 
