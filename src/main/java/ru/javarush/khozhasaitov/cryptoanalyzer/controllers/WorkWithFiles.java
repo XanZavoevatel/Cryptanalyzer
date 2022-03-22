@@ -16,6 +16,8 @@ public class WorkWithFiles {
     private Path finaleDirectory;
     private String GETTING_SOURCE = "Введите путь к нативному файлу (.txt): ";
     private String GETTING_FINALE = "Введите путь для создания измененного файла: ";
+    private String BAD_PATH = "Не удалось создать файл по указанному пути";
+    private String MESSAGE = "Файл с таким именем уже существует, поэтому старый файл будет удален.";
     private String IS_NOT_FILE = "Нет такого файла. Попробуй снова.";
     private String IS_NOT_DIRECTORY = "Указана неверная дирректория или ты думаешь я сам должен ее создать?!\n" +
             "А может ты указал путь к файлу. В любом случае попробуй снова;-)";
@@ -59,8 +61,8 @@ public class WorkWithFiles {
         }
     }
 
-    public void writeFile(List<String> writeStr) {
-        for (String s : writeStr) {
+    public void writeFile() {
+        for (String s : stringsResultFile) {
 
             try {
                 s = s + "\n";
@@ -93,11 +95,11 @@ public class WorkWithFiles {
             try {
                 Files.createFile(finaleDirectory);
             } catch (IOException e) {
-                System.out.println("Не удалось создать файл по указанному пути");
+                System.out.println(BAD_PATH);
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Файл с таким именем уже существует, поэтому старый файл будет удален.");
+            System.out.println(MESSAGE);
             try {
                 Files.delete(finaleDirectory);
                 Files.createFile(finaleDirectory);

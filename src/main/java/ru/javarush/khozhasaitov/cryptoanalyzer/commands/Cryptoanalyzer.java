@@ -13,12 +13,17 @@ public abstract class Cryptoanalyzer {
 
     public Cryptoanalyzer() {
         hello();
+
+
+    }
+
+    protected void workWithFile() {
         WorkWithFiles workWithFiles = new WorkWithFiles();
         workWithFiles.readFile(workWithFiles.getSource());
         finaleListStr = criptoanalyzer(workWithFiles.getStringsFile(), Constants.getAlphabet());
         workWithFiles.setStringsResultFile(finaleListStr);
-        workWithFiles.writeFile(finaleListStr);
-        endWork();
+        workWithFiles.writeFile();
+
     }
 
     protected void endWork() {
@@ -26,7 +31,7 @@ public abstract class Cryptoanalyzer {
             Thread.sleep(2000);
             System.out.println("Все шифры переданы в Роскомнадзор.");
             Thread.sleep(2000);
-            System.out.println( "За вами уже выехали.");
+            System.out.println("За вами уже выехали.");
             Thread.sleep(2000);
             System.out.println("Беги глупец!!!");
             Thread.sleep(2000);
@@ -50,7 +55,7 @@ public abstract class Cryptoanalyzer {
     }
 
     protected void inputKey() {
-        System.out.printf("Введите ключ шифрования (целое положительное число от 0 до %d): ", Constants.getAlphabet().length -1);
+        System.out.printf("Введите ключ шифрования (целое положительное число от 0 до %d): ", Constants.getAlphabet().length - 1);
         Scanner scanner = new Scanner(System.in);
         while (true) {
             if (scanner.hasNextInt()) {
@@ -66,6 +71,7 @@ public abstract class Cryptoanalyzer {
         }
         scanner.close();
     }
+
     protected abstract String switchChars(String str, char[] alphabet);
 
     protected abstract void hello();

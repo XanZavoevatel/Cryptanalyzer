@@ -2,17 +2,19 @@ package ru.javarush.khozhasaitov.cryptoanalyzer.commands;
 
 import java.util.List;
 
-public class Decoder extends Cryptoanalyzer{
+public class Decoder extends Cryptoanalyzer {
 
     public Decoder() {
         super();
+        workWithFile();
+        endWork();
     }
 
     @Override
     protected String switchChars(String str, char[] alphabet) {
         String result;
         char[] chars = str.toCharArray();
-        char ch;
+
         for (int i = 0; i < chars.length; i++) {
             int num = 0;
             for (int j = 0; j < alphabet.length; j++) {
@@ -21,17 +23,17 @@ public class Decoder extends Cryptoanalyzer{
                     break;
                 }
             }
-                if (num - key < 0) {
-                    ch = alphabet[alphabet.length -(num - key) * -1 ];
-                } else {
-                    ch = alphabet[(num - key) % alphabet.length];
-                }
+            if (num - key < 0) {
+                chars[i] = alphabet[alphabet.length - (num - key) * -1];
+            } else {
+                chars[i] = alphabet[(num - key) % alphabet.length];
+            }
 
-            chars[i] = ch;
+
         }
 
         result = String.valueOf(chars);
-        return  result;
+        return result;
 
     }
 
@@ -45,8 +47,9 @@ public class Decoder extends Cryptoanalyzer{
     protected void hello() {
         System.out.println("Файл успешно дешифрован.");
     }
+
     protected void endWork() {
         System.out.println("Файл успешно расшифрован.");
-        super.endWork();
+
     }
 }

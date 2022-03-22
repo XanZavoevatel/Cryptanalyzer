@@ -6,10 +6,12 @@ public class Encoder extends Cryptoanalyzer{
 
     public Encoder() {
         super();
+        workWithFile();
+        endWork();
     }
     protected void endWork() {
         System.out.println("Файл успешно зашифрован.");
-        super.endWork();
+
     }
 
         @Override
@@ -26,7 +28,6 @@ public class Encoder extends Cryptoanalyzer{
     protected String switchChars(String str, char[] alphabet) {
         String result;
         char[] chars = str.toCharArray();
-        char ch;
         for (int i = 0; i < chars.length; i++) {
             int num = 0;
             for (int j = 0; j < alphabet.length; j++) {
@@ -35,9 +36,8 @@ public class Encoder extends Cryptoanalyzer{
                     break;
                 }
             }
-                ch = alphabet[(num + key) % alphabet.length];
 
-            chars[i] = ch;
+            chars[i] = alphabet[(num + key) % alphabet.length];
         }
 
         result = String.valueOf(chars);
